@@ -437,7 +437,430 @@
     }, 1200);
   })();
 </script>
+<!-- ========== ADMIN PANEL (HIDDEN SECTION) ========== -->
+<!-- Add this code INSIDE the <body> tag of your main page, preferably before closing </body> -->
+<!-- Access method: Press 'A' + 'D' + 'M' + 'I' + 'N' keys in sequence (within 2 seconds each) -->
 
+<style>
+  /* Hidden admin container - invisible by default */
+  .admin-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', monospace;
+  }
+  
+  .admin-container {
+    background: #0a0f1f;
+    border: 2px solid #00ffcc;
+    border-radius: 2rem;
+    width: 90%;
+    max-width: 900px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 2rem;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+  }
+  
+  .admin-header {
+    border-bottom: 2px solid #00ffcc;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .admin-header h2 {
+    color: #00ffcc;
+    font-size: 1.8rem;
+    text-shadow: 0 0 5px cyan;
+  }
+  
+  .close-admin {
+    background: #ff3366;
+    border: none;
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+  
+  .close-admin:hover { background: #ff0055; transform: scale(1.02); }
+  
+  .admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stat-card {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid cyan;
+    border-radius: 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .stat-card h3 { color: #7df9ff; margin-bottom: 0.5rem; font-size: 0.9rem; }
+  .stat-card .stat-value { font-size: 2rem; font-weight: bold; color: white; }
+  
+  .admin-section {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #00ffcc;
+  }
+  
+  .admin-section h3 { color: #00ffcc; margin-bottom: 1rem; }
+  
+  .cheat-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    background: rgba(255,255,255,0.05);
+    border-radius: 1rem;
+  }
+  
+  .toggle-switch {
+    width: 50px;
+    height: 24px;
+    background: #333;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .toggle-switch.active {
+    background: #00ffcc;
+  }
+  
+  .toggle-switch::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    transition: 0.2s;
+  }
+  
+  .toggle-switch.active::after {
+    left: 27px;
+  }
+  
+  .user-log {
+    background: #0a0a0a;
+    padding: 0.8rem;
+    border-radius: 0.8rem;
+    font-family: monospace;
+    font-size: 0.8rem;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .log-entry {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #223;
+    color: #aaf;
+  }
+  
+  .admin-input {
+    background: #1a1f2e;
+    border: 1px solid #00ffcc;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  
+  .admin-btn {
+    background: #00ffcc;
+    color: #0a0f1f;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0.2rem;
+  }
+  
+  .admin-btn.danger { background: #ff3366; color: white; }
+  .warning-text { color: #ffaa44; font-size: 0.8rem; margin-top: 0.5rem; }
+</style>
+
+<div id="adminPanel" class="admin-overlay">
+  <div class="admin-container">
+    <div class="admin-header">
+      <h2>🔐 NAYAK ADMIN CONTROL</h2>
+      <button class="close-admin" onclick="closeAdminPanel()">✖ EXIT</button>
+    </div>
+    
+    <div class="admin-stats">
+      <div class="stat-card">
+        <h3>📊 ACTIVE USERS</h3>
+        <div class="stat-value" id="statUsers">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>⚡ CHEAT STATUS</h3>
+        <div class="stat-value" id="cheatStatus">ONLINE</div>
+      </div>
+      <div class="stat-card">
+        <h3>🔑 SESSION ID</h3>
+        <div class="stat-value" style="font-size:1rem;" id="sessionId">NAYAK-001</div>
+      </div>
+    </div>
+    
+    <div class="admin-section">
+      <h3>🎮 CHEAT MODULES CONTROL</h3>
+      <div class="cheat-toggle">
+        <span>🔫 AIMBOT (Silent Aim)</span>
+        <div class="toggle-switch" id="toggleAimbot" onclick="toggleCheat('aimbot')"></div>
+      </div>
+      <div class="cheat-toggle">
+        <span>👁️ ESP / WALLHACK</span>
+        <div class="toggle-switch" id="toggleEsp" onclick="toggleCheat('esp')"></div>
+      </div>
+      <div class="cheat-toggle">
+        <span>🎯 TRIGGERBOT</span>
+        <div class="toggle-switch" id="toggleTrigger" onclick="toggleCheat('trigger')"></div>
+      </div>
+      <div class="cheat-toggle">
+        <span>🛡️ ANTI-BAN PROTECTION</span>
+        <div class="toggle-switch active" id="toggleAntiban" onclick="toggleCheat('antiban')"></div>
+      </div>
+    </div>
+    
+    <div class="admin-section">
+      <h3>📝 SYSTEM LOGS (REAL-TIME)</h3>
+      <div class="user-log" id="adminLogs">
+        <div class="log-entry">✓ Admin panel initialized [NAYAK_ROOT]</div>
+        <div class="log-entry">✓ Security check passed</div>
+      </div>
+      <button class="admin-btn" onclick="clearLogs()" style="margin-top:0.8rem;">Clear Logs</button>
+    </div>
+    
+    <div class="admin-section">
+      <h3>⚙️ MAINTENANCE & BROADCAST</h3>
+      <input type="text" id="broadcastMsg" class="admin-input" placeholder="Announcement to users..." style="width: 60%;">
+      <button class="admin-btn" onclick="sendBroadcast()">Send Alert</button>
+      <button class="admin-btn danger" onclick="resetAllCheats()">Reset All Modules</button>
+      <div class="warning-text">⚠️ Hidden access: Only you can see this panel | Press ESC to close</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ================== HIDDEN ADMIN ACCESS (KONAMI-STYLE SEQUENCE) ==================
+  let adminSequence = [];
+  const adminCode = ['a', 'd', 'm', 'i', 'n'];
+  let adminUnlocked = false;
+  
+  // Cheat states (stored in localStorage or memory)
+  let cheatStates = {
+    aimbot: true,
+    esp: true,
+    trigger: true,
+    antiban: true
+  };
+  
+  // Function to open admin panel
+  function openAdminPanel() {
+    if (!adminUnlocked) {
+      addLogEntry("⚠️ Unauthorized access attempt blocked", "#ff6644");
+      return;
+    }
+    document.getElementById('adminPanel').style.display = 'flex';
+    updateStats();
+    addLogEntry("🔓 Admin panel opened by MASTER user");
+  }
+  
+  window.closeAdminPanel = function() {
+    document.getElementById('adminPanel').style.display = 'none';
+    addLogEntry("🔒 Admin panel closed");
+  };
+  
+  // Toggle cheat function (visible to admin buttons)
+  window.toggleCheat = function(cheatName) {
+    if (!adminUnlocked) return;
+    const toggleMap = {
+      aimbot: 'toggleAimbot',
+      esp: 'toggleEsp',
+      trigger: 'toggleTrigger',
+      antiban: 'toggleAntiban'
+    };
+    const toggleElem = document.getElementById(toggleMap[cheatName]);
+    if (cheatStates[cheatName] === undefined) return;
+    
+    cheatStates[cheatName] = !cheatStates[cheatName];
+    if (toggleElem) {
+      if (cheatStates[cheatName]) {
+        toggleElem.classList.add('active');
+      } else {
+        toggleElem.classList.remove('active');
+      }
+    }
+    addLogEntry(`🔄 ${cheatName.toUpperCase()} module ${cheatStates[cheatName] ? 'ENABLED' : 'DISABLED'} by admin`);
+    
+    // Update global cheat status indicator
+    const anyActive = cheatStates.aimbot || cheatStates.esp || cheatStates.trigger;
+    document.getElementById('cheatStatus').innerHTML = anyActive ? '🟢 ONLINE' : '🔴 OFFLINE';
+    if (document.getElementById('cheatStatus')) {
+      document.getElementById('cheatStatus').style.color = anyActive ? '#0f0' : '#f66';
+    }
+  };
+  
+  window.resetAllCheats = function() {
+    cheatStates = { aimbot: true, esp: true, trigger: true, antiban: true };
+    document.querySelectorAll('.toggle-switch').forEach(sw => sw.classList.add('active'));
+    document.getElementById('cheatStatus').innerHTML = '🟢 ONLINE';
+    addLogEntry("🔄 ALL CHEAT MODULES RESET TO DEFAULT (ACTIVE)");
+    updateStats();
+  };
+  
+  window.sendBroadcast = function() {
+    let msg = document.getElementById('broadcastMsg').value;
+    if (!msg.trim()) {
+      addLogEntry("⚠️ Broadcast failed: empty message");
+      return;
+    }
+    addLogEntry(`📢 ADMIN BROADCAST: "${msg}"`);
+    // Show visual alert on main page (if main page has a toast element, but we simulate)
+    const mainPageToast = document.createElement('div');
+    mainPageToast.textContent = `🔔 ADMIN: ${msg}`;
+    mainPageToast.style.position = 'fixed';
+    mainPageToast.style.bottom = '20px';
+    mainPageToast.style.right = '20px';
+    mainPageToast.style.background = '#00ffcc';
+    mainPageToast.style.color = '#000';
+    mainPageToast.style.padding = '12px 20px';
+    mainPageToast.style.borderRadius = '30px';
+    mainPageToast.style.zIndex = '10000';
+    mainPageToast.style.fontWeight = 'bold';
+    mainPageToast.style.boxShadow = '0 0 15px cyan';
+    document.body.appendChild(mainPageToast);
+    setTimeout(() => mainPageToast.remove(), 4000);
+    document.getElementById('broadcastMsg').value = '';
+  };
+  
+  window.clearLogs = function() {
+    const logDiv = document.getElementById('adminLogs');
+    logDiv.innerHTML = '<div class="log-entry">📋 Logs cleared by admin</div>';
+    addLogEntry("🧹 System logs cleared");
+  };
+  
+  function addLogEntry(message, color = '#7df9ff') {
+    const logDiv = document.getElementById('adminLogs');
+    if (!logDiv) return;
+    const entry = document.createElement('div');
+    entry.className = 'log-entry';
+    entry.style.color = color;
+    const timestamp = new Date().toLocaleTimeString();
+    entry.innerHTML = `[${timestamp}] ${message}`;
+    logDiv.appendChild(entry);
+    logDiv.scrollTop = logDiv.scrollHeight;
+    // keep last 50 logs
+    while (logDiv.children.length > 60) logDiv.removeChild(logDiv.firstChild);
+  }
+  
+  function updateStats() {
+    // Simulate active users (random between 124-387 for realism)
+    const fakeUsers = Math.floor(Math.random() * (420 - 100 + 1) + 100);
+    document.getElementById('statUsers').innerText = fakeUsers;
+    const sessionIdElem = document.getElementById('sessionId');
+    if (sessionIdElem) sessionIdElem.innerText = 'NAYAK-' + Math.floor(Math.random() * 9999);
+  }
+  
+  // KEY SEQUENCE LISTENER (A D M I N)
+  document.addEventListener('keydown', function(e) {
+    const key = e.key.toLowerCase();
+    // Only track letters a-z
+    if (key.length === 1 && /[a-z]/i.test(key)) {
+      adminSequence.push(key);
+      if (adminSequence.length > adminCode.length) adminSequence.shift();
+      if (arraysEqual(adminSequence, adminCode)) {
+        adminUnlocked = true;
+        // Visual feedback on main page
+        const notif = document.createElement('div');
+        notif.textContent = '✅ ADMIN ACCESS GRANTED | Press A+D+M+I+N again to open panel';
+        notif.style.position = 'fixed';
+        notif.style.top = '20px';
+        notif.style.left = '50%';
+        notif.style.transform = 'translateX(-50%)';
+        notif.style.backgroundColor = '#00cc88';
+        notif.style.color = '#000';
+        notif.style.padding = '10px 20px';
+        notif.style.borderRadius = '30px';
+        notif.style.zIndex = '10001';
+        notif.style.fontWeight = 'bold';
+        notif.style.fontFamily = 'monospace';
+        document.body.appendChild(notif);
+        setTimeout(() => notif.remove(), 3000);
+        
+        addLogEntry("✅ ADMIN AUTHENTICATED via secret sequence");
+        // Auto open panel after sequence?
+        setTimeout(() => {
+          if (adminUnlocked) openAdminPanel();
+        }, 200);
+      }
+    }
+    // If ESC open while panel open, close it
+    if (e.key === 'Escape' && document.getElementById('adminPanel').style.display === 'flex') {
+      closeAdminPanel();
+    }
+  });
+  
+  function arraysEqual(a, b) {
+    if (a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
+    return true;
+  }
+  
+  // Initialize toggle switches appearance
+  function initToggles() {
+    const toggles = {
+      aimbot: 'toggleAimbot',
+      esp: 'toggleEsp',
+      trigger: 'toggleTrigger',
+      antiban: 'toggleAntiban'
+    };
+    for (let [cheat, elemId] of Object.entries(toggles)) {
+      const elem = document.getElementById(elemId);
+      if (elem && cheatStates[cheat]) elem.classList.add('active');
+      else if (elem) elem.classList.remove('active');
+    }
+  }
+  
+  // Periodic stats refresh
+  setInterval(() => {
+    if (document.getElementById('adminPanel').style.display === 'flex' && adminUnlocked) {
+      updateStats();
+    }
+  }, 8000);
+  
+  // Expose some fake console security
+  console.log("%c🔐 NAYAK CHEATS | ADMIN BACKEND LOADED | Type //HIDDEN//", "color: #0f0; font-size:12px");
+  initToggles();
+  addLogEntry("🛡️ Hidden admin interface active | Access sequence: A D M I N");
+</script>
+<!-- ========== END ADMIN PANEL ========== -->
 <!-- additional interactive hover effect: feature list shimmer, no extra dependencies -->
 </body>
 </html>

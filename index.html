@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    // Secret key for admin access
+    const ADMIN_SECRET = "nayak2026";  // Sirf aapko pata
+    
+    // Agar user /admin pe aata hai without secret, redirect
+    if(window.location.pathname === "/admin" || window.location.pathname === "/admin.html") {
+        let userKey = prompt("🔐 Admin Access Required - Enter Secret Key:");
+        if(userKey !== ADMIN_SECRET) {
+            alert("Access Denied!");
+            window.location.href = "/";
+        }
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Nayak Cheats | Elite Gaming Tools</title>

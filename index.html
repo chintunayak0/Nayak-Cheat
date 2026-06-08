@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Nayak Cheats | Elite Gaming Tools</title>
+  <!-- Google Fonts & simple reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at 10% 20%, #0a0f1e, #03060c);
+      font-family: 'Inter', sans-serif;
+      color: #eef5ff;
+      line-height: 1.4;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+
+    /* main glassmorphic card */
+    .hero {
+      max-width: 1300px;
+      width: 100%;
+      background: rgba(12, 20, 30, 0.55);
+      backdrop-filter: blur(12px);
+      border-radius: 3rem;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 255, 255, 0.1) inset;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    /* header area */
+    .brand-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.8rem 2.5rem;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.25);
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .logo-area h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FFFFFF, #4dffea, #00c3ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .logo-area p {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7fcdff;
+      margin-top: 0.3rem;
+      font-weight: 500;
+    }
+
+    .badge {
+      background: rgba(0, 255, 255, 0.1);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      border: 1px solid rgba(0, 255, 255, 0.5);
+      font-weight: 600;
+      font-size: 0.85rem;
+      backdrop-filter: blur(4px);
+    }
+
+    /* main content */
+    .content-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 2.5rem;
+    }
+
+    .main-info {
+      flex: 2;
+      min-width: 240px;
+    }
+
+    .main-info h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #ffffff, #b6f9ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .main-info .tagline {
+      font-size: 1.2rem;
+      border-left: 4px solid #0ff;
+      padding-left: 1rem;
+      margin: 1rem 0 1.5rem 0;
+      color: #ccf4ff;
+      font-weight: 400;
+    }
+
+    .desc {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #d3e6ff;
+      margin-bottom: 2rem;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .feature-item {
+      background: rgba(0, 30, 40, 0.6);
+      border-radius: 2rem;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      color: #aff;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(95deg, #00ccff, #0077ff);
+      border: none;
+      padding: 0.9rem 2.2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #0a0f1e;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 6px 14px rgba(0, 200, 255, 0.3);
+      margin-top: 1rem;
+      font-family: inherit;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.02);
+      background: linear-gradient(95deg, #33ddff, #2a7fff);
+      box-shadow: 0 10px 20px rgba(0, 200, 255, 0.5);
+    }
+
+    /* right panel (showcase) */
+    .showcase-panel {
+      flex: 1.2;
+      min-width: 240px;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 2rem;
+      padding: 1.6rem;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+    }
+
+    .showcase-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px dashed cyan;
+      padding-bottom: 0.5rem;
+    }
+
+    .cheat-card {
+      background: rgba(0, 20, 30, 0.7);
+      border-radius: 1.5rem;
+      padding: 1rem;
+      margin: 1rem 0;
+      transition: 0.15s linear;
+    }
+
+    .cheat-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      color: #7df9ff;
+    }
+
+    .cheat-card p {
+      font-size: 0.8rem;
+      color: #bbddff;
+      margin-top: 4px;
+    }
+
+    .status {
+      display: inline-block;
+      background: #1f8a4c;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      padding: 0.2rem 0.7rem;
+      margin-top: 0.6rem;
+      color: white;
+    }
+
+    /* footer */
+    .footer-note {
+      text-align: center;
+      padding: 1.5rem;
+      border-top: 1px solid rgba(0, 255, 255, 0.2);
+      font-size: 0.75rem;
+      color: #8aaec0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    /* interactive modal (popup) */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: #0e1725;
+      border-radius: 2rem;
+      max-width: 380px;
+      width: 90%;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid cyan;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.5);
+    }
+
+    .modal-content h3 {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #fff, #0ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .modal-content p {
+      margin: 1rem 0;
+      color: #b8e2ff;
+    }
+
+    .close-modal {
+      background: #2a3f54;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    /* responsive */
+    @media (max-width: 750px) {
+      .brand-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      .content-grid {
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+      .main-info h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* simple glow animation */
+    @keyframes subtleGlow {
+      0% { border-color: rgba(0, 255, 255, 0.2); box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.1);}
+      100% { border-color: rgba(0, 255, 255, 0.5); box-shadow: 0 0 8px 0 rgba(0, 255, 255, 0.3);}
+    }
+    .hero {
+      animation: subtleGlow 3s infinite alternate;
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="brand-header">
+    <div class="logo-area">
+      <h1>⚡ NAYAK CHEATS</h1>
+      <p>UNDETECTED | PRECISION | ELITE</p>
+    </div>
+    <div class="badge">
+      🔒 v3.7.2 — PRIVATE SERVER
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="main-info">
+      <h2>dominate the game.<br>invisible & unstoppable.</h2>
+      <div class="tagline">✦ next-gen gaming enhancements ✦</div>
+      <p class="desc">
+        Nayak Cheats delivers premium, customized tools for competitive gamers. 
+        Advanced memory reading, ESP, Aimbot, and radar hacks — built by enthusiasts, 
+        trusted by thousands. Full undetected protection with regular updates.
+      </p>
+      <div class="feature-list">
+        <span class="feature-item">🎯 1ms Aimbot</span>
+        <span class="feature-item">👁️ Full ESP + Chams</span>
+        <span class="feature-item">🛡️ Kernel-level bypass</span>
+        <span class="feature-item">⚙️ HWID Spoofer</span>
+        <span class="feature-item">📊 Live Stats UI</span>
+      </div>
+      <button class="cta-button" id="revealBtn">🔓 ACCESS CHEAT PANEL →</button>
+    </div>
+
+    <div class="showcase-panel">
+      <div class="showcase-title">
+        <span>🔥 ACTIVE MODULES</span> <span style="font-size: 0.8rem;">(live)</span>
+      </div>
+      <div class="cheat-card">
+        <h3>▸ LEGACY AIMBOT</h3>
+        <p>Silent aim / FOV sliders / prediction based on neural motion</p>
+        <span class="status">✔ ONLINE</span>
+      </div>
+      <div class="cheat-card">
+        <h3>▸ ESP MASTER</h3>
+        <p>Boxes, Snaplines, Distance, Items & Player glow</p>
+        <span class="status">✔ ACTIVE</span>
+      </div>
+      <div class="cheat-card">
+        <h3>▸ TRIGGERBOT</h3>
+        <p>Auto-shot on enemy crosshair, delay settings & burst mode</p>
+        <span class="status">✔ UPDATED</span>
+      </div>
+      <div style="margin-top: 16px; font-size: 0.75rem; text-align: center; color: #4ba;">
+        🛡️ 100% bypass EAC / BattlEye
+      </div>
+    </div>
+  </div>
+  <div class="footer-note">
+    © 2025 Nayak Cheats — for educational & competitive fairness research only. All trademarks belong to their respective owners.
+  </div>
+</div>
+
+<!-- modal dialog (popup) for extra info -->
+<div id="cheatModal" class="modal">
+  <div class="modal-content">
+    <h3>⚡ NAYAK SECRET VAULT</h3>
+    <p>Premium cheat loader is ready.<br> <span style="font-size: 0.9rem; color: aqua;">✔ Status: Active & Undetected</span></p>
+    <p style="font-size: 0.8rem;">🔑 Download latest build: <strong>Nayak_Cheats_Private.exe</strong><br> (password: nayak2026)</p>
+    <button class="close-modal" id="closeModalBtn">CLOSE</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Ensure modal elements
+    const modal = document.getElementById('cheatModal');
+    const revealBtn = document.getElementById('revealBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    // helper to open modal
+    function openModal() {
+      if (modal) {
+        modal.style.display = 'flex';
+        // small animation friendly
+        modal.style.backdropFilter = 'blur(8px)';
+      }
+    }
+
+    function closeModal() {
+      if (modal) {
+        modal.style.display = 'none';
+      }
+    }
+
+    if (revealBtn) {
+      revealBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    }
+
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener('click', (e) => {
+        closeModal();
+      });
+    }
+
+    // close on outside click
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    }
+
+    // Optional: keyboard ESC closes modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && modal.style.display === 'flex') {
+        closeModal();
+      }
+    });
+
+    // Add a live console greet (just for style)
+    console.log("%c🔥 NAYAK CHEATS UI READY | ALL SYSTEMS ONLINE", "color: #0ff; font-size: 14px; font-weight: bold;");
+    // extra interactive: dynamic status message after 2 sec (subtle)
+    setTimeout(() => {
+      const statusIndicators = document.querySelectorAll('.status');
+      if (statusIndicators.length) {
+        // pulse effect in console only? do a small badge update to show freshness
+        const firstStatus = statusIndicators[0];
+        if (firstStatus && firstStatus.innerText.includes('ONLINE')) {
+          // optional: just demonstration of "live" style.
+          firstStatus.style.transition = "0.2s";
+          firstStatus.style.backgroundColor = "#0fa";
+          setTimeout(() => { if(firstStatus) firstStatus.style.backgroundColor = "#1f8a4c"; }, 600);
+        }
+      }
+    }, 1200);
+  })();
+</script>
+
+<!-- additional interactive hover effect: feature list shimmer, no extra dependencies -->
+</body>
+</html>
